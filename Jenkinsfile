@@ -49,7 +49,8 @@ pipeline {
              when { branch 'sonar' }
             steps {
                 powershell(returnStdout: true, script: '''
-                ipconfig
+                    Write-Host("Getting Host IP Address") -ForegroundColor Cyan
+                    ipconfig
                 ''')
                 
             }
