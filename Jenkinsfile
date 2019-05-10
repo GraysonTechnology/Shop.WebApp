@@ -50,7 +50,7 @@ pipeline {
             steps {
                 powershell(returnStdout: true, script: '''
                     Write-Host("Getting Host IP Address") -ForegroundColor Cyan
-                    ipconfig
+                    cmd.exe /c ipconfig
                 ''')
                 
             }
