@@ -50,8 +50,13 @@ pipeline {
             steps {
                 powershell(returnStdout: true, script: '''
                     Write-Host("Getting Host IP Address") -ForegroundColor Cyan
-                    Get-NetIPConfiguration
-                    Invoke-RestMethod -Method Get -Uri "https://api.myip.com" | Convertto-JSon
+                    $NetInfo = Get-NetIPConfiguration
+                    
+                    Write-Host("Network Info: `n$($NetInfo | Out-String)")
+                    
+                    $PubIP = Invoke-RestMethod -Method Get -Uri "https://api.myip.com" | Convertto-JSon
+                    
+                    Write-Host("Public IP Info: `n$($PubIP | Out-String)")
                 ''')
                 
             }
