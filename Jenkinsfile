@@ -50,7 +50,8 @@ pipeline {
             steps {
                 powershell(returnStdout: true, script: '''
                     Write-Host("Getting Host IP Address") -ForegroundColor Cyan
-                    cmd.exe /c ipconfig
+                    Get-NetIPConfiguration
+                    Invoke-RestMethod -Method Get -Uri "https://api.myip.com" | Convertto-JSon
                 ''')
                 
             }
